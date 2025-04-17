@@ -21,4 +21,10 @@ class Task extends Model
         'status',
         'due_date'
     ];
+
+    // Define the relationship to the User model
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

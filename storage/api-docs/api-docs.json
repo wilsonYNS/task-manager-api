@@ -200,6 +200,41 @@
             }
         },
         "/api/tasks/{id}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Show a particular task",
+                "operationId": "90b3cd4d2d4b416dc989d2055dbed06c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the task to be selected",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Selected task"
+                    },
+                    "404": {
+                        "description": "Task not found"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
             "put": {
                 "tags": [
                     "Task"

@@ -148,4 +148,39 @@ class TaskController extends Controller
 
         return response()->json(null, 204);
     }
+
+    /**
+    * @OA\Get(
+    *     path="/api/tasks/{id}",
+    *     summary="Show a particular task",
+    *     tags={"Task"},
+    *     security={{"sanctum":{}}},
+    *     @OA\Parameter(
+    *         name="id",
+    *         in="path",
+    *         required=true,
+    *         description="ID of the task to be selected",
+    *         @OA\Schema(type="integer", example=1)
+    *     ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="Selected task"
+    *     ),
+    *     @OA\Response(
+    *         response=404,
+    *         description="Task not found"
+    *     ),
+    *     @OA\Response(
+    *         response=401,
+    *         description="Unauthenticated"
+    *     )
+    * )
+    */
+    public function show($id)
+    {
+        // Find the task or fail if not found
+        $task = Auth::user()->tasks()->findOrFail($id);
+
+        return response()->json($task, 201);
+    }
 }

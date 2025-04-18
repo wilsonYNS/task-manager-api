@@ -9,7 +9,8 @@ fi
 #Install dependencies if vendor doesn't exist
 if [ ! -f vendor ]; then
     echo "Installing composer dependencies..."
-    sudo -u www-data composer install --no-dev --optimize-autoloader --no-progress --no-interaction
+    composer install --no-dev --optimize-autoloader --no-progress --no-interaction
+    chown -R www-data:www-data /var/www/vendor
 fi
 
 # Wait for MySQL to be ready
